@@ -9,18 +9,22 @@ const uploadImages = async (req, res) => {
       });
     }
 
-    const images = [];
+    const uploadedFiles = [];
 
     for (const file of req.files) {
       const result = await uploadImage(file, "portfolio");
 
-      images.push({
+      uploadedFiles.push({
         url: result.secure_url,
         filename: file.originalname,
+        size: file.size,
       });
     }
 
-    res.status(201).json(images);
+    res.status(201).json({
+      urls: uploadedFiles.map((item) => item.url),
+      files: uploadedFiles,
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -49,11 +53,15 @@ const uploadResumeFile = async (req, res) => {
       url: result.secure_url,
       publicId: result.public_id,
       filename: req.file.originalname,
+      contentType: req.file.mimetype,
+      size: req.file.size,
     });
 
     res.status(201).json({
       url: resume.url,
       filename: resume.filename,
+      size: resume.size,
+      uploadedAt: resume.updatedAt,
     });
   } catch (error) {
     res.status(500).json({

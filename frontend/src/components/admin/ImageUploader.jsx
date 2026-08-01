@@ -78,7 +78,11 @@ export default function ImageUploader({
         },
       });
 
-      const urls = Array.isArray(response.data.urls) ? response.data.urls : [];
+      const uploadedFiles = response.data?.files || response.data?.urls || response.data || [];
+      const urls = Array.isArray(uploadedFiles)
+        ? uploadedFiles.map((item) => (typeof item === 'string' ? item : item?.url)).filter(Boolean)
+        : [];
+
       if (!urls.length) {
         throw new Error('Upload did not return a usable image URL.');
       }

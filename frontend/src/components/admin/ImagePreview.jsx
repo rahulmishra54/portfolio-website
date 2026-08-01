@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trash2 } from 'lucide-react';
+import { Trash2, MoveVertical } from 'lucide-react';
 
 export default function ImagePreview({ src, alt, onRemove, draggable, onDragStart, onDragOver, onDrop }) {
   return (
