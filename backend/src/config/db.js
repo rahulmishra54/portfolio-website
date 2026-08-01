@@ -4,14 +4,22 @@ let cachedConnection = null;
 
 const connectDatabase = async () => {
   if (cachedConnection) {
-    console.log("Using cached MongoDB connection");
+    console.log("✅ Using cached MongoDB connection");
     return cachedConnection;
   }
 
   try {
-    console.log("Connecting to MongoDB...");
+    const mongoUri = process.env.MONGODB_URI;
+    
+    if (!mongoUri) {
+      console.error("❌ MONGODB_URI environment variable is not set");
+      throw new Error("MONGODB_URI is not configured");
+    }
 
-    const connection = await mongoose.connect(process.env.MONGODB_URI, {
+    console.log("🔌 Connecting to MongoDB...");
+    console.log("URI (first 50 chars):", mongoUri.substring(0, 50) + "...");
+
+    const connection = await mongoose.connect(mongoUri, {
       retryWrites: true,
       w: "majority",
       maxPoolSize: 10,
@@ -23,10 +31,13 @@ const connectDatabase = async () => {
     });
 
     cachedConnection = connection;
-    console.log("✅ MongoDB Connected");
+    console.log("✅ MongoDB Connected successfully");
+    console.log("Database:", connection.connection.db.databaseName);
     return connection;
   } catch (error) {
-    console.error("❌ MongoDB Connection Error:", error.message);
+    console.error("❌ MongoDB Connection Error:");
+    console.error("Code:", error.code);
+    console.error("Message:", error.message);
     throw error;
   }
 };
