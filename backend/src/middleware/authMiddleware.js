@@ -1,18 +1,22 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
-  const authHeader = req.header('Authorization');
-  if (!authHeader) return res.status(401).json({ message: 'Access Denied' });
+  const token = req.header("Authorization");
 
-  // Support "Bearer <token>" or raw token
-  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : authHeader.trim();
+  if (!token) {
+    return res.status(401).json({ message: "Access Denied" });
+  }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'changeme');
+    const decoded = jwt.verify(
+      token.replace("Bearer ", ""),
+      process.env.JWT_SECRET
+    );
+
     req.user = decoded;
-    return next();
-  } catch (error) {
-    return res.status(401).json({ message: 'Invalid Token' });
+    next();
+  } catch {
+    res.status(401).json({ message: "Invalid Token" });
   }
 };
 

@@ -1,8 +1,16 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 import { getToken, removeToken, isTokenExpired } from './auth';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL || '/api';
+
+if (!import.meta.env.VITE_API_BASE_URL && import.meta.env.MODE !== 'development') {
+  console.warn(
+    'VITE_API_BASE_URL is not configured. Frontend requests will use /api and may 404 if the frontend is deployed separately from the backend.'
+  );
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -43,3 +51,5 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+

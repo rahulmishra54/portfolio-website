@@ -39,8 +39,8 @@ export default function BlogsSection() {
   }, []);
 
   return (
-    <section id="blogs" className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950/95 p-8 sm:p-10">
-      <div className="pointer-events-none absolute -right-12 bottom-8 h-64 w-64 rounded-full bg-slate-500/10 blur-3xl" />
+    <section id="blogs" className="relative overflow-hidden rounded-[2rem] border border-[#27354E] bg-[#0D1424]/80 p-8 sm:p-10">
+      <div className="pointer-events-none absolute -right-12 bottom-8 h-64 w-64 rounded-full bg-[#3B82F6]/10 blur-3xl" />
       <div className="relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -48,9 +48,9 @@ export default function BlogsSection() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-sky-300">Writing</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-[#3B82F6]">Writing</p>
           <h2 className="text-4xl font-semibold text-white sm:text-5xl">Ideas on product craft, interface systems, and frontend delivery.</h2>
-          <p className="max-w-3xl text-lg leading-8 text-slate-400">
+          <p className="max-w-3xl text-lg leading-8 text-[#B6C2D9]">
             {loading
               ? 'Loading articles…'
               : error
@@ -58,13 +58,13 @@ export default function BlogsSection() {
               : 'Recent articles that connect product thinking with practical engineering execution.'}
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Featured thread</p>
-              <p className="mt-4 text-slate-300 leading-7">Thoughtful work on product quality and the patterns used to ship better frontend systems.</p>
+            <div className="rounded-[1.75rem] border border-[#27354E] bg-[#141C2E] p-6">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#7C879C]">Featured thread</p>
+              <p className="mt-4 text-[#B6C2D9] leading-7">Thoughtful work on product quality and the patterns used to ship better frontend systems.</p>
             </div>
-            <div className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Format</p>
-              <p className="mt-4 text-slate-300 leading-7">Short, readable posts built for quick insight and confident technical decision-making.</p>
+            <div className="rounded-[1.75rem] border border-[#27354E] bg-[#141C2E] p-6">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#7C879C]">Format</p>
+              <p className="mt-4 text-[#B6C2D9] leading-7">Short, readable posts built for quick insight and confident technical decision-making.</p>
             </div>
           </div>
         </motion.div>
@@ -89,7 +89,7 @@ export default function BlogsSection() {
                     <BookOpen className="h-4 w-4 text-sky-400" />
                     <span>{item.category || 'Insight'}</span>
                   </div>
-                  <div className="rounded-full bg-slate-800 px-3 py-1 text-xs uppercase tracking-[0.35em] text-slate-400">{item.readingTime ? `${item.readingTime} min` : 'Quick read'}</div>
+                  <div className="rounded-full bg-[#141C2E] px-3 py-1 text-xs uppercase tracking-[0.35em] text-[#7C879C]">{item.readingTime ? `${item.readingTime} min` : 'Quick read'}</div>
                 </div>
                 <h3 className="mt-5 text-2xl font-semibold text-white">{item.title}</h3>
                 <p className="mt-4 text-slate-400 leading-8">{item.content?.replace(/<[^>]*>/g, ' ').slice(0, 180) || 'A short essay on product and engineering craft.'}</p>

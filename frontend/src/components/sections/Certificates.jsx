@@ -38,8 +38,8 @@ export default function CertificatesSection() {
   }, []);
 
   return (
-    <section id="certificates" className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950/95 p-8 sm:p-10">
-      <div className="pointer-events-none absolute -left-12 top-14 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
+    <section id="certificates" className="relative overflow-hidden rounded-[2rem] border border-[#27354E] bg-[#0D1424]/80 p-8 sm:p-10">
+      <div className="pointer-events-none absolute -left-12 top-14 h-56 w-56 rounded-full bg-[#3B82F6]/10 blur-3xl" />
       <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -47,9 +47,9 @@ export default function CertificatesSection() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-sky-300">Certificates</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-[#3B82F6]">Certificates</p>
           <h2 className="text-4xl font-semibold text-white sm:text-5xl">Proof of practice and ongoing learning.</h2>
-          <p className="max-w-2xl text-lg leading-8 text-slate-400">
+          <p className="max-w-2xl text-lg leading-8 text-[#B6C2D9]">
             {loading
               ? 'Loading certificates…'
               : error
@@ -58,13 +58,13 @@ export default function CertificatesSection() {
           </p>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Recent learning</p>
-              <p className="mt-4 text-slate-300 leading-7">Keeping current on modern tooling, architecture, and product delivery practices.</p>
+            <div className="rounded-[1.75rem] border border-[#27354E] bg-[#141C2E] p-6">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#7C879C]">Recent learning</p>
+              <p className="mt-4 text-[#B6C2D9] leading-7">Keeping current on modern tooling, architecture, and product delivery practices.</p>
             </div>
-            <div className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Verification</p>
-              <p className="mt-4 text-slate-300 leading-7">Every credential here represents a practical milestone in engineering or product systems.</p>
+            <div className="rounded-[1.75rem] border border-[#27354E] bg-[#141C2E] p-6">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#7C879C]">Verification</p>
+              <p className="mt-4 text-[#B6C2D9] leading-7">Every credential here represents a practical milestone in engineering or product systems.</p>
             </div>
           </div>
         </motion.div>
@@ -86,12 +86,12 @@ export default function CertificatesSection() {
               <article key={item._id} className="grid gap-4 rounded-[1.75rem] border border-slate-800 bg-slate-900 p-6 shadow-sm shadow-slate-950/20">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 text-sky-400">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-[#0D1424] text-[#3B82F6]">
                       <Award className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-lg font-semibold text-white">{item.title}</p>
-                      <p className="text-sm text-slate-500">{item.issuer}</p>
+                      <p className="text-sm text-[#B6C2D9]">{item.issuer}</p>
                     </div>
                   </div>
                   {item.credentialUrl && (
