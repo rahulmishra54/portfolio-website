@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import api from '../services/api';
@@ -57,7 +57,7 @@ export default function ProjectPage() {
   const imageCount = project?.images?.length || 0;
 
   if (loading) {
-    return <div className="rounded-3xl border border-slate-800 bg-slate-950 px-8 py-12 text-slate-500">Loading project details…</div>;
+    return <div className="rounded-3xl border border-slate-800 bg-slate-950 px-8 py-12 text-slate-500">Loading project details</div>;
   }
 
   if (error) {
