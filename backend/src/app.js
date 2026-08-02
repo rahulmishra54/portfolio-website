@@ -6,7 +6,13 @@ import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://portfolio-website-d3ba.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true,
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
