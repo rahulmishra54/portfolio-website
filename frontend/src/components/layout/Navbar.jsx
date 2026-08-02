@@ -90,7 +90,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-white transition hover:text-[#3B82F6]">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#141C2E] text-[#3B82F6]">&lt;/&gt;</span>
-            <span>Portfolio</span>
+            <span>{settings?.name || 'Portfolio'}</span>
           </Link>
 
           <button

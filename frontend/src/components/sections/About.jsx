@@ -85,6 +85,11 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="rounded-[2rem] border border-[#27354E] bg-[#141C2E] p-8 shadow-[0_40px_120px_rgba(3,12,34,0.25)]"
         >
+          {settings?.photoUrl ? (
+            <div className="overflow-hidden rounded-[1.75rem] border border-[#27354E] bg-[#0D1424]">
+              <img src={settings.photoUrl} alt={`${settings?.name || 'Profile'} photo`} className="h-72 w-full object-cover" />
+            </div>
+          ) : null}
           <div className="flex items-center gap-3 text-sm uppercase tracking-[0.35em] text-[#7C3AED]">
             <Briefcase className="h-5 w-5" /> Profile snapshot
           </div>

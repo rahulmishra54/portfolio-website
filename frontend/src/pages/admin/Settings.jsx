@@ -21,11 +21,18 @@ export default function AdminSettingsPage() {
     try {
       const response = await api.get('/settings');
       const settings = response.data || {};
+      setValue('name', settings.name || '');
+      setValue('badgeText', settings.badgeText || '');
       setValue('heroTitle', settings.heroTitle || '');
       setValue('heroDescription', settings.heroDescription || '');
       setValue('aboutMe', settings.aboutMe || '');
+      setValue('status', settings.status || '');
+      setValue('primaryTechnologies', Array.isArray(settings.primaryTechnologies) ? settings.primaryTechnologies.join(', ') : settings.primaryTechnologies || '');
+      setValue('techStack', Array.isArray(settings.techStack) ? settings.techStack.join(', ') : settings.techStack || '');
       setValue('github', settings.github || '');
       setValue('linkedin', settings.linkedin || '');
+      setValue('twitter', settings.twitter || '');
+      setValue('instagram', settings.instagram || '');
       setValue('email', settings.email || '');
       setValue('phone', settings.phone || '');
       setValue('profileUrl', settings.profileUrl || '');
@@ -50,7 +57,17 @@ export default function AdminSettingsPage() {
     setSuccess('');
 
     try {
-      await api.put('/settings', values);
+      const payload = {
+        ...values,
+        primaryTechnologies: values.primaryTechnologies
+          ? values.primaryTechnologies.split(',').map((item) => item.trim()).filter(Boolean)
+          : [],
+        techStack: values.techStack
+          ? values.techStack.split(',').map((item) => item.trim()).filter(Boolean)
+          : [],
+      };
+
+      await api.put('/settings', payload);
       setSuccess('Portfolio settings updated.');
     } catch (err) {
       setError(err.message || 'Unable to save settings.');
@@ -76,6 +93,11 @@ export default function AdminSettingsPage() {
         ) : (
           <motion.form onSubmit={handleSubmit(onSubmit)} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 grid gap-4 lg:grid-cols-2">
             <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Name</span>
+              <input {...register('name')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
               <span className="mb-2 block">Hero title</span>
               <input {...register('heroTitle')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
             </label>
@@ -83,6 +105,26 @@ export default function AdminSettingsPage() {
             <label className="text-sm text-slate-300">
               <span className="mb-2 block">Hero description</span>
               <input {...register('heroDescription')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Badge text</span>
+              <input {...register('badgeText')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Availability status</span>
+              <input {...register('status')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Primary technologies (comma separated)</span>
+              <input {...register('primaryTechnologies')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Tech stack (comma separated)</span>
+              <input {...register('techStack')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
             </label>
 
             <label className="col-span-full text-sm text-slate-300">
@@ -98,6 +140,16 @@ export default function AdminSettingsPage() {
             <label className="text-sm text-slate-300">
               <span className="mb-2 block">LinkedIn</span>
               <input {...register('linkedin')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Twitter</span>
+              <input {...register('twitter')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
+            </label>
+
+            <label className="text-sm text-slate-300">
+              <span className="mb-2 block">Instagram</span>
+              <input {...register('instagram')} className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400" />
             </label>
 
             <label className="text-sm text-slate-300">

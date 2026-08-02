@@ -35,10 +35,16 @@ export default function AdminBlogsPage() {
     setSubmitting(true);
     setError('');
     try {
+      const payload = {
+        ...values,
+        tags: values.tags ? values.tags.split(',').map((item) => item.trim()).filter(Boolean) : [],
+        published: Boolean(values.published),
+      };
+
       if (editingId) {
-        await api.put(`/blogs/${editingId}`, values);
+        await api.put(`/blogs/${editingId}`, payload);
       } else {
-        await api.post('/blogs', values);
+        await api.post('/blogs', payload);
       }
       reset();
       setEditingId(null);

@@ -38,10 +38,17 @@ export default function AdminProjectsPage() {
     setSubmitting(true);
     setError('');
     try {
+      const payload = {
+        ...values,
+        techStack: values.techStack ? values.techStack.split(',').map((item) => item.trim()).filter(Boolean) : [],
+        features: values.features ? values.features.split('\n').map((item) => item.trim()).filter(Boolean) : [],
+        featured: Boolean(values.featured),
+      };
+
       if (editingId) {
-        await api.put(`/projects/${editingId}`, values);
+        await api.put(`/projects/${editingId}`, payload);
       } else {
-        await api.post('/projects', values);
+        await api.post('/projects', payload);
       }
       reset();
       setEditingId(null);

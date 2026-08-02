@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, Clock3 } from 'lucide-react';
 import api from '../../services/api';
@@ -83,7 +84,7 @@ export default function BlogsSection() {
             <div className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-12 text-slate-500">No published posts available yet.</div>
           ) : (
             items.slice(0, 3).map((item, index) => (
-              <article key={item._id} className="rounded-[1.75rem] border border-slate-800 bg-slate-900 p-8 shadow-sm shadow-slate-950/10">
+              <Link key={item._id} to={`/blogs/${item._id}`} className="group block rounded-[1.75rem] border border-slate-800 bg-slate-900 p-8 shadow-sm shadow-slate-950/10 transition hover:border-[#3B82F6]">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-sm uppercase tracking-[0.35em] text-slate-400">
                     <BookOpen className="h-4 w-4 text-sky-400" />
@@ -91,9 +92,9 @@ export default function BlogsSection() {
                   </div>
                   <div className="rounded-full bg-[#141C2E] px-3 py-1 text-xs uppercase tracking-[0.35em] text-[#7C879C]">{item.readingTime ? `${item.readingTime} min` : 'Quick read'}</div>
                 </div>
-                <h3 className="mt-5 text-2xl font-semibold text-white">{item.title}</h3>
+                <h3 className="mt-5 text-2xl font-semibold text-white group-hover:text-sky-400">{item.title}</h3>
                 <p className="mt-4 text-slate-400 leading-8">{item.content?.replace(/<[^>]*>/g, ' ').slice(0, 180) || 'A short essay on product and engineering craft.'}</p>
-              </article>
+              </Link>
             ))
           )}
         </motion.div>

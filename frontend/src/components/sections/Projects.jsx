@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import api from '../../services/api';
@@ -130,15 +131,23 @@ export default function Projects() {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    {featuredProject.liveUrl && (
+                    {featuredProject.liveUrl ? (
                       <a href={featuredProject.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2563EB]">
                         <ExternalLink className="h-4 w-4" /> Live demo
                       </a>
+                    ) : (
+                      <button disabled className="inline-flex items-center gap-2 rounded-full bg-slate-800 px-5 py-3 text-sm font-semibold text-slate-500 transition">
+                        <ExternalLink className="h-4 w-4" /> Live demo
+                      </button>
                     )}
-                    {featuredProject.githubUrl && (
+                    {featuredProject.githubUrl ? (
                       <a href={featuredProject.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[#27354E] bg-[#0D1424] px-5 py-3 text-sm font-semibold text-[#B6C2D9] transition hover:border-[#3B82F6] hover:text-white">
                         <ExternalLink className="h-4 w-4" /> Code
                       </a>
+                    ) : (
+                      <button disabled className="inline-flex items-center gap-2 rounded-full border border-[#27354E] bg-slate-800 px-5 py-3 text-sm font-semibold text-slate-500 transition">
+                        <ExternalLink className="h-4 w-4" /> Code
+                      </button>
                     )}
                   </div>
                 </div>
@@ -185,10 +194,10 @@ export default function Projects() {
                           ))}
                         </div>
                         <div className="mt-6 flex flex-wrap gap-3">
-                          <a href={`/projects/${project._id}`} className="inline-flex items-center gap-2 rounded-full border border-[#27354E] bg-[#141C2E] px-4 py-2 text-sm font-semibold text-[#B6C2D9] transition hover:border-[#3B82F6] hover:text-white">
+                          <Link to={`/projects/${project._id}`} className="inline-flex items-center gap-2 rounded-full border border-[#27354E] bg-[#141C2E] px-4 py-2 text-sm font-semibold text-[#B6C2D9] transition hover:border-[#3B82F6] hover:text-white">
                             Preview
                             <ArrowRight className="h-4 w-4" />
-                          </a>
+                          </Link>
                         </div>
                       </motion.article>
                     ))}
@@ -223,13 +232,13 @@ export default function Projects() {
         )}
 
         <div className="flex justify-end">
-          <a
-            href="/projects"
+          <Link
+            to="/projects"
             className="inline-flex items-center gap-2 rounded-full border border-[#27354E] bg-[#141C2E] px-5 py-3 text-sm font-semibold text-[#B6C2D9] transition hover:border-[#3B82F6] hover:text-white"
           >
             View all projects
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

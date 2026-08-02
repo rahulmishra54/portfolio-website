@@ -2,12 +2,10 @@ import Settings from "../models/Settings.js";
 
 const getSettings = async (req, res) => {
   try {
-    const settings = await Settings.findOne();
+    let settings = await Settings.findOne();
 
     if (!settings) {
-      return res.status(404).json({
-        message: "Settings not found",
-      });
+      settings = new Settings();
     }
 
     res.status(200).json(settings);

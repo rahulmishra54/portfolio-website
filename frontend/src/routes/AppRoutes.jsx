@@ -49,6 +49,7 @@ export default function AppRoutes() {
         <Route path="messages" element={<AdminMessages />} />
         <Route path="settings" element={<AdminSettings />} />
         <Route path="resume" element={<AdminResume />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

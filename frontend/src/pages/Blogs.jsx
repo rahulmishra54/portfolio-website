@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, Clock3 } from 'lucide-react';
 import api from '../services/api';
@@ -60,16 +61,18 @@ export default function BlogsPage() {
               transition={{ duration: 0.35, delay: index * 0.05 }}
               className="rounded-3xl border border-slate-800 bg-slate-950 p-6"
             >
-              <div className="flex items-center gap-2 text-sm text-slate-400">
-                <BookOpen className="h-4 w-4 text-sky-400" />
-                <span>{blog.category || 'Insight'}</span>
-              </div>
-              <h2 className="mt-5 text-2xl font-semibold text-white">{blog.title}</h2>
-              <p className="mt-3 text-slate-400 leading-7">{blog.content?.replace(/<[^>]*>/g, ' ').slice(0, 220) || 'The full article will be shared soon.'}</p>
-              <div className="mt-5 flex items-center gap-3 text-sm text-slate-500">
-                <Clock3 className="h-4 w-4" />
-                <span>{blog.readingTime ? `${blog.readingTime} min read` : 'Quick read'}</span>
-              </div>
+              <Link to={`/blogs/${blog._id}`} className="group block">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <BookOpen className="h-4 w-4 text-sky-400" />
+                  <span>{blog.category || 'Insight'}</span>
+                </div>
+                <h2 className="mt-5 text-2xl font-semibold text-white group-hover:text-sky-400">{blog.title}</h2>
+                <p className="mt-3 text-slate-400 leading-7">{blog.content?.replace(/<[^>]*>/g, ' ').slice(0, 220) || 'The full article will be shared soon.'}</p>
+                <div className="mt-5 flex items-center gap-3 text-sm text-slate-500">
+                  <Clock3 className="h-4 w-4" />
+                  <span>{blog.readingTime ? `${blog.readingTime} min read` : 'Quick read'}</span>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </div>

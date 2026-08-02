@@ -6,6 +6,18 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    name: {
+      type: String,
+      default: "",
+    },
+    badgeText: {
+      type: String,
+      default: "",
+    },
+    heroTitle: {
+      type: String,
+      default: "",
+    },
     heroDescription: {
       type: String,
       default: "",
@@ -14,11 +26,31 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    status: {
+      type: String,
+      default: "",
+    },
+    primaryTechnologies: {
+      type: [String],
+      default: [],
+    },
+    techStack: {
+      type: [String],
+      default: [],
+    },
     github: {
       type: String,
       default: "",
     },
     linkedin: {
+      type: String,
+      default: "",
+    },
+    twitter: {
+      type: String,
+      default: "",
+    },
+    instagram: {
       type: String,
       default: "",
     },
